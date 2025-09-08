@@ -8,6 +8,7 @@ venv_gpu/
 ENV/
 env.bak/
 venv.bak/
+*.pyc
 
 # PyCharm
 .idea

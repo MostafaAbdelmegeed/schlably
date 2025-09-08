@@ -88,11 +88,14 @@ class DataHandler:
         data: List[List[Task]]
 
         if instances_data_file_path:
-            data_file_path = DATA_DIRECTORY / instances_data_file_path
+            data_file_path = DATA_DIRECTORY / config['sp_type'] / instances_data_file_path
+            
         elif INSTANCES_FILE_CONFIG_KEY in config:
-            data_file_path = DATA_DIRECTORY / config[INSTANCES_FILE_CONFIG_KEY]
+            data_file_path = DATA_DIRECTORY / config['sp_type'] / config[INSTANCES_FILE_CONFIG_KEY]
         else:
             assert False, f"Missing {INSTANCES_FILE_CONFIG_KEY} variable"
+        
+        print(f"Loading instances from {data_file_path}")
         if data_file_path.exists():
             with open(data_file_path, 'rb') as handle:
                 data = pickle.load(handle)
